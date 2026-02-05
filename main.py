@@ -8,6 +8,14 @@ class LibraryItem:
     
     def can_borrow(self):
         return True
+    
+class Book(LibraryItem):
+    def __init__(self, title, item_id, author):
+        super().__init__(title, item_id)
+        self.author = author
+        self.__is_checked_out = False
+
+
 
 book = LibraryItem("Neuromancer", "N123")
 
