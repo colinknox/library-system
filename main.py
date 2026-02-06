@@ -42,9 +42,6 @@ class DVD(LibraryItem):
         else:
             self.__is_check_out = True
 
-    def is_checked_out(self):
-        return self.__is_check_out
-
     def return_item(self):
         self.__is_check_out = False
 
@@ -54,8 +51,22 @@ class DVD(LibraryItem):
         else:
             return False
 
+class ReferenceBook(LibraryItem):
+    def __init__(self, title, item_id, subject):
+        super().__init__(title, item_id)
+        self.subject = subject
 
+    def can_borrow(self):
+        return False
+    
+    def checkout(self):
+        raise Exception("Reference books cannot be checked out")
 
-book = LibraryItem("Neuromancer", "N123")
-hobbit = Book("The Hobbit", "H321", "J. R. R. Tolkien")
-batman = DVD("Batman", "B246", 126)
+# book = LibraryItem("Neuromancer", "N123")
+# hobbit = Book("The Hobbit", "H321", "J. R. R. Tolkien")
+# batman = DVD("Batman", "B246", 126)
+
+reference = ReferenceBook("Test Book", "T837", "Non-Fiction")
+
+print(reference.can_borrow())
+print(reference.checkout())
