@@ -28,6 +28,11 @@ class Book(LibraryItem):
     def is_checked_out_TEST(self):
         return self.__is_checked_out
 
+    def is_available(self):
+        if self.__is_checked_out == False:
+            return True
+        else:
+            return False
 
 
 
@@ -35,9 +40,6 @@ book = LibraryItem("Neuromancer", "N123")
 hobbit = Book("The Hobbit", "H321", "J. R. R. Tolkien")
 
 # print(hobbit.checkout())
-# print(hobbit._is_checked_out)
-print(hobbit.TEST_is_checked_out())
+# print(hobbit.is_checked_out_TEST())
 
-
-
-
+# print(f"DEBUG: Is available = {hobbit.is_available()}")
