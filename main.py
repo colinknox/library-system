@@ -42,23 +42,20 @@ class DVD(LibraryItem):
         else:
             self.__is_check_out = True
 
-    # def is_checked_out(self):
-    #     return self.__is_check_out
+    def is_checked_out(self):
+        return self.__is_check_out
 
     def return_item(self):
-        pass
+        self.__is_check_out = False
 
+    def is_available(self):
+        if self.__is_check_out == False:
+            return True
+        else:
+            return False
 
 
 
 book = LibraryItem("Neuromancer", "N123")
 hobbit = Book("The Hobbit", "H321", "J. R. R. Tolkien")
 batman = DVD("Batman", "B246", 126)
-
-# print(hobbit.checkout())
-
-# print(f"DEBUG: Is available = {hobbit.is_available()}")
-
-print(batman.is_checked_out())
-print(batman.checkout())
-print(batman.is_checked_out())
