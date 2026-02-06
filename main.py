@@ -9,7 +9,6 @@ class LibraryItem:
     def can_borrow(self):
         return True
     
-    
 class Book(LibraryItem):
     def __init__(self, title, item_id, author):
         super().__init__(title, item_id)
@@ -25,21 +24,41 @@ class Book(LibraryItem):
     def return_item(self):
         self.__is_checked_out = False
     
-    def is_checked_out_TEST(self):
-        return self.__is_checked_out
-
     def is_available(self):
         if self.__is_checked_out == False:
             return True
         else:
             return False
 
+class DVD(LibraryItem):
+    def __init__(self, title, item_id, duration_minutes):
+        super().__init__(title, item_id)
+        self.duration_minutes = duration_minutes
+        self.__is_check_out = False
+
+    def checkout(self):
+        if self.__is_check_out == True:
+            raise Exception("DVD is already checked out")
+        else:
+            self.__is_check_out = True
+
+    # def is_checked_out(self):
+    #     return self.__is_check_out
+
+    def return_item(self):
+        pass
+
+
 
 
 book = LibraryItem("Neuromancer", "N123")
 hobbit = Book("The Hobbit", "H321", "J. R. R. Tolkien")
+batman = DVD("Batman", "B246", 126)
 
 # print(hobbit.checkout())
-# print(hobbit.is_checked_out_TEST())
 
 # print(f"DEBUG: Is available = {hobbit.is_available()}")
+
+print(batman.is_checked_out())
+print(batman.checkout())
+print(batman.is_checked_out())
